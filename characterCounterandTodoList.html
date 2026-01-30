@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Counter</title>
+</head>
+<body>
+    <h1>Character Counter</h1>
+    <input id="input">
+    <p>Number of Characters written:<span id="count"> 0</span></p>
+
+    <h1>List</h1>
+    <input id="list_input" placeholder="enter your tasks">
+    <button id="plus">+</button>
+    <ul id="mylist"></ul>
+    <script>
+        const count= document.getElementById("count");
+        const input= document.getElementById("input");
+        input.addEventListener('input', function(){
+            count.innerHTML = input.value.length;
+        });
+        
+        const mylistText = document.getElementById("list_input");
+        const mylist = document.getElementById("mylist");
+        const mylistInput = document.getElementById("plus");
+        mylistInput.addEventListener('click', function(){
+            if(mylistText.value === ""){
+                alert("Write something!");
+                return;
+            }
+            const item = document.createElement("li");
+            item.textContent = mylistText.value;
+            mylist.appendChild(item);
+            mylistText.value = "";
+
+        });
+        
+    </script>
+</body>
+
+</html>

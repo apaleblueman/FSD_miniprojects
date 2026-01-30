@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+        .heading{
+
+            font-family:'Roboto','Courier New', Courier, monospace;
+            font-size: 30px;
+        }
+        .input{
+            font-family:'Roboto','Courier New', Courier, monospace;
+            font-size: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+        }
+        #name{
+            height: 50px;
+            width: 99%;
+        }
+        .buttons{
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: center;
+            
+            margin-top: 20px;
+            gap: 30px;
+        }
+        .submit>button{
+            background-color: rgba(0, 0, 255, 0.514);
+        }
+        .withdraw>button{
+            background-color: rgba(255, 0, 0, 0.613);
+        }
+        button{
+            font-size: 40px;
+            border-radius: 10px;
+            border:none;
+            color: white;
+            padding:10px 20px 10px 20px;
+
+        }
+        .warning{
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            font-family:'Roboto','Courier New', Courier, monospace;
+            color: red;
+            font-size: 40px;
+        }
+        .form{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-wrap: wrap;
+        }
+        h1{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="heading">
+        <h1 id="money">Balance: $1000</h1>
+    </div>
+    <div class="form" id="deposit">
+    <form>
+        <div class="input" >
+        <label for="name"> Amount</label><br>
+        <input type="text" id="name"/>
+        </div>
+        <div class="buttons">
+            <div class="submit">
+                <button type="submit">deposit</button>
+            </div>
+            <div class="withdraw">
+                <button type="submit">withdraw</button>
+            </div>
+        </div>
+        <span class="warning">Invalid amount</span>
+    </form>
+    </div>
+    </div>
+    <script>
+        let totalmoney = document.getElementById("money");
+        let inputmoney = document.getElementById("name").value;
+        document.getElementById("deposit").addEventListener('submit', function(e){
+                            e.preventDefault();
+                            let newmoney = totalmoney + inputmoney;
+                            totalmoney.value = newmoney;
+        });
+    
+    </script>
+</body>
+</html>
