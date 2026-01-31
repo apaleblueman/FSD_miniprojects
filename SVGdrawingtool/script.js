@@ -25,13 +25,26 @@ canvas.addEventListener('mousemove', function(event){
             let currentCoordinates = newline.getAttribute("points");
             
             let newCoordinates = currentCoordinates + "," + coor;
-            console.log(currentCoordinates, newCoordinates);
+            // console.log(currentCoordinates, newCoordinates);
 
-            newline.setAttribute("style", "fill:none;stroke:black");
+            newline.setAttribute("style", "fill:none;stroke:black;stroke-width:6");
             newline.setAttribute("points", newCoordinates);
             
         }
     });
 canvas.addEventListener('mouseup', function(){
     pendown=false;  
+});
+
+const clear = document.getElementById('clear');
+const undo = document.getElementById('undo');
+clear.addEventListener('click', function(){
+    // alert("erase")
+    canvas.innerHTML = "";
+
+})
+undo.addEventListener('click', function(){
+    // alert("erase")
+    canvas.removeChild(newline);
+
 })
