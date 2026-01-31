@@ -45,6 +45,7 @@ clear.addEventListener('click', function(){
 })
 undo.addEventListener('click', function(){
     // alert("erase")
-    canvas.removeChild(newline);
+    let lastline = canvas.lastElementChild;
+    canvas.removeChild(lastline);
 
 })
