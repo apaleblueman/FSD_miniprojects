@@ -98,8 +98,10 @@ document.getElementById('sorting').addEventListener("change", function(){
                         return b.rating - a.rating;});
                         break;
                     case "namehigh":
+                        display_list = temp_list.sort((a,b)=>a.name.localeCompare(b.name));
                         break;
                     case "namelow":
+                        display_list = temp_list.sort((a,b)=>b.name.localeCompare(a.name));
                         break;
                     default:
                         break;
