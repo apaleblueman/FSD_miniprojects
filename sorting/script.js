@@ -103,6 +103,10 @@ document.getElementById('sorting').addEventListener("change", function(){
                     case "namelow":
                         display_list = temp_list.sort((a,b)=>b.name.localeCompare(a.name));
                         break;
+                    case "id":
+                        display_list = temp_list.sort((a,b)=>{
+                            return a.id-b.id
+                        });
                     default:
                         break;
                 // alert(category);
