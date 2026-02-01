@@ -80,9 +80,31 @@ document.getElementById('filter').addEventListener("change", function(){
 document.getElementById('sorting').addEventListener("change", function(){
                 let category = document.getElementById("sorting").value;
                 let temp_list = product_list;
-                display_list = temp_list.sort((a, b)=>{
-                        return a.price - b.price;
-                });
-                additems(display_list);
+                switch(category){
+                    case "pricehigh":
+                        display_list = temp_list.sort((a, b)=>{
+                        return a.price - b.price;});
+                        break;
+                    case "pricelow":
+                        display_list = temp_list.sort((a, b)=>{
+                        return b.price - a.price;});
+                        break;
+                    case "rankinghigh":
+                        display_list = temp_list.sort((a, b)=>{
+                        return a.rating - b.rating;});
+                        break;
+                    case "rankinglow":
+                        display_list = temp_list.sort((a, b)=>{
+                        return b.rating - a.rating;});
+                        break;
+                    case "namehigh":
+                        break;
+                    case "namelow":
+                        break;
+                    default:
+                        break;
                 // alert(category);
+                }
+                
+                additems(display_list);
 });
