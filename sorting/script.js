@@ -76,3 +76,13 @@ document.getElementById('filter').addEventListener("change", function(){
                 if(category == "all"){additems(product_list);}
                 else{additems(display_list);}
 });
+
+document.getElementById('sorting').addEventListener("change", function(){
+                let category = document.getElementById("sorting").value;
+                let temp_list = product_list;
+                display_list = temp_list.sort((a, b)=>{
+                        return a.price - b.price;
+                });
+                additems(display_list);
+                // alert(category);
+});
