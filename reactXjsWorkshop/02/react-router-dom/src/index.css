@@ -1,0 +1,50 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body{
+  height: 100%;
+  width: 100%;
+  color: brown;
+  text-align: center;
+  background-color: beige;
+}
+
+.card{
+  height: 300px;
+  width: 250px;
+  background-color: azure;
+  margin: 20px;
+  border: solid 1px black;
+  border-radius: 15px;
+}
+.card img{
+  height: 60px;
+  width: 60px;
+  margin-top: 10px;
+  border-radius: 400px; 
+  border: solid 1px black;
+}
+.card h2{
+  margin-top: 20px;
+}
+.card p{
+  margin-top: 20px;
+}
+.card button{
+  margin-top: 15px;
+  background-color: brown;
+  color: wheat;
+  padding: 7px;
+  border-radius: 40px;
+  border-style: none;
+}
+
+.container{
+  margin: 0;
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
