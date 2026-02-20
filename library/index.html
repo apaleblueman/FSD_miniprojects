@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+    <div class="heading">Libray UI for Odin Project</div>
+    <div class="userinput">
+        <button id="userinput" command="show-modal" commandfor="my-dialog">Add a new book</button>
+        <dialog id="my-dialog">
+        <form method="get">
+            <label for="name">Name of book:</label><input type="text" name="name" id="name"><br>
+            <label for="author">Name of author:</label><input type="text" name="author" id="author"><br>
+            <label for="pages">Number of pages:</label><input type="number" name="pages" id="pages"><br>
+            <label for="read">Have you read it yet? (yes/no):</label><input type="text" name="read" id="read">
+        </form>
+        <button commandfor="my-dialog" command="close">cancel</button>
+        <button type="submit" id="addbook">Submit</button>
+    </dialog>
+    </div>
+
+
+    <div class="content" id="content">
+        
+    </div>
+</body>
+</html>
