@@ -6,22 +6,35 @@
     <title>Document</title>
     <script src="./script.js" defer></script>
     <link rel="stylesheet" href="./style.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Betania+Patmos+In&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="heading">Libray UI for Odin Project</div>
-    <div class="userinput">
-        <button id="userinput" command="show-modal" commandfor="my-dialog">Add a new book</button>
-        <dialog id="my-dialog">
-        <form method="get">
-            <label for="name">Name of book:</label><input type="text" name="name" id="name"><br>
-            <label for="author">Name of author:</label><input type="text" name="author" id="author"><br>
-            <label for="pages">Number of pages:</label><input type="number" name="pages" id="pages"><br>
-            <label for="read">Have you read it yet? (yes/no):</label><input type="text" name="read" id="read">
-        </form>
-        <button commandfor="my-dialog" command="close">cancel</button>
-        <button type="submit" id="addbook">Submit</button>
-    </dialog>
+    <div class="topbar">
+        <div class="heading betania-patmos-in-regular">Libray UI for Odin Project</div>
+        <div class="userinput betania-patmos-in-regular">
+        <div class="sub-heading-container">
+            <span class="sub-heading">Add a new book</span>
+            <button class="plus" id="userinput" command="show-modal" commandfor="my-dialog"><img src="./add_circle.svg"/></button>
+        </div>
+        </div>
     </div>
+    <div class="dialog-box">
+        <dialog id="my-dialog">
+            <form method="get">
+                <label for="name">Name of book:</label><input type="text" name="name" id="name"><br>
+                <label for="author">Name of author:</label><input type="text" name="author" id="author"><br>
+                <label for="pages">Number of pages:</label><input type="number" name="pages" id="pages"><br>
+                <label for="read">Have you read it yet? (yes/no):</label><input type="text" name="read" id="read">
+            </form>
+            <button commandfor="my-dialog" command="close">cancel</button>
+
+            <button type="submit" id="addbook">Submit</button>
+        </dialog>
+    </div>
+    
+    
 
 
     <div class="content" id="content">

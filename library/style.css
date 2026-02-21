@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #2A7B9B;
+    background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 25%, rgba(237, 221, 83, 1) 100%);
+}
+
+.betania-patmos-in-regular {
+  font-family: "Betania Patmos In", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.plus{
+    border: none;
+    border-radius: 200px;
+    background-color: transparent;
+    
+}
+.sub-heading{
+    color: white;
+    font-size: larger
+}
+.sub-heading-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: white solid 2px;
+    padding: 7px;
+    gap: 7px;
+}
+
+
+.topbar
+{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    background-color: #2a7b9b52;
+}
+.heading{
+    font-size:x-large;
+    color: white;
+
+    font-weight: bolder;
+
+}
+.dialog-box{
+    display: flex;   
+    justify-content: center;
+    align-items: center;
+}
