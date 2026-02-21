@@ -72,8 +72,9 @@ body{
     border-radius: 20px;
     background-color: white;
     flex-wrap: wrap;
-    overflow:scroll;
-    width: 15%;
+    /* overflow:scroll;
+    width: 25rem;
+    height: auto; */
 }
 .card > button{
     align-self: self-end;
@@ -85,4 +86,8 @@ body{
 }
 .delete>img{
     filter: invert(1) brightness(0);
+}
+.content{
+    display: grid;
+    grid-template:25rem 25rem/ 25rem 25rem 25rem;
 }
