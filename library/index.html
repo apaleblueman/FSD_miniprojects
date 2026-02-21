@@ -12,33 +12,36 @@
 </head>
 <body>
     <div class="topbar">
-        <div class="heading betania-patmos-in-regular">Libray UI for Odin Project</div>
+        <div class="heading betania-patmos-in-regular">Libray UI for Odin Project<img src="./book.svg"></div>
         <div class="userinput betania-patmos-in-regular">
         <div class="sub-heading-container">
             <span class="sub-heading">Add a new book</span>
             <button class="plus" id="userinput" command="show-modal" commandfor="my-dialog"><img src="./add_circle.svg"/></button>
         </div>
         </div>
-    </div>
-    <div class="dialog-box">
+    </div>  
         <dialog id="my-dialog">
-            <form method="get">
-                <label for="name">Name of book:</label><input type="text" name="name" id="name"><br>
-                <label for="author">Name of author:</label><input type="text" name="author" id="author"><br>
-                <label for="pages">Number of pages:</label><input type="number" name="pages" id="pages"><br>
-                <label for="read">Have you read it yet? (yes/no):</label><input type="text" name="read" id="read">
+            <div class="my-dialog">
+            <form method="get" class="my-dialog">
+                <div class="input-container"><label for="name">Name of book:</label><input type="text" name="name" id="name"><br></div>
+                <div class="input-container"><label for="author">Name of author:</label><input type="text" name="author" id="author"><br></div>
+                <div class="input-container"><label for="pages">Number of pages:</label><input type="number" name="pages" id="pages"><br></div>
+                <div class="input-container"><label for="read">Marked Finished:</label><input type="checkbox" name="read" id="read"></div>
             </form>
-            <button commandfor="my-dialog" command="close">cancel</button>
-
-            <button type="submit" id="addbook">Submit</button>
+            <div class="button-container">
+                            <button commandfor="my-dialog" command="close">cancel</button>
+                            <button type="submit" id="addbook">Submit</button>
+            </div>
+            </div>
         </dialog>
-    </div>
-    
-    
-
-
-    <div class="content" id="content">
-        
-    </div>
+        <div class="content" id="content">
+                <div class="card">
+                    <h1>BookName</h1>
+                    <h3>author</h3>
+                    <p>pages</p>
+                    <p>status</p>
+                    <button class="delete"><img src="delete.svg"></button>
+                </div>
+        </div>
 </body>
 </html>

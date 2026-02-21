@@ -21,25 +21,35 @@ function addBookToLibrary(name, author, pages, read) {
 
 
 const contentWindow = document.getElementById('content');
+
 function displayBooks(){
     contentWindow.innerHTML = "";
     myLibrary.forEach(bookObj => {
                 
         // console.log(`Book ID${bookObj.id}`);
+        const card = document.createElement("div");
+        card.className = "card";
         const bookname = document.createElement("h1"); 
-        const author = document.createElement("h2"); 
-        const pages = document.createElement("p"); 
-        const read = document.createElement("p");
-        
+        const author = document.createElement("h3"); 
+        const pages = document.createElement("span"); 
+        const read = document.createElement("span");
+        const remove = document.createElement("button");
+        const icon = document.createElement("img");
+        icon.setAttribute("src", "./delete.svg");
+        remove.className = "delete";
+        remove.appendChild(icon);
+
         bookname.textContent = bookObj.name;
         author.textContent = bookObj.author;
         pages.textContent = bookObj.pages;
         read.textContent = bookObj.read;
 
-        contentWindow.appendChild(bookname);
-        contentWindow.appendChild(author);
-        contentWindow.appendChild(pages);
-        contentWindow.appendChild(read);
+        card.appendChild(bookname);
+        card.appendChild(author);
+        card.appendChild(pages);
+        card.appendChild(read);
+        card.appendChild(remove);
+        contentWindow.appendChild(card)
 
     });
 }
