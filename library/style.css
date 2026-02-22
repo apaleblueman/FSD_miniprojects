@@ -87,7 +87,13 @@ body{
 .delete>img{
     filter: invert(1) brightness(0);
 }
+.delete>img:hover{
+    filter: invert(0);
+}
 .content{
     display: grid;
     grid-template:25rem 25rem/ 25rem 25rem 25rem;
+}
+img{
+    filter: brightness(0) invert(1);
 }
