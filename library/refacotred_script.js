@@ -4,6 +4,7 @@ function BookObj(title, author, booklength, read_status){
             if(!(new.target)){ console.log("use new keyword when creatinh this object!");return;}
             this.id = crypto.randomUUID();
             this.title = title;
+            this.booklength = booklength;
             this.author = author;
             this.read_status = read_status;
 };
@@ -18,21 +19,40 @@ function displayBooks(){
         const card = document.createElement('div');
         card.className = 'card';
         const title = document.createElement('div');
+        title.className = 'title';
         const author = document.createElement('div');
+        author.className = 'author';
         const booklength = document.createElement('div');
+        booklength.className = 'booklength';
         const read_status = document.createElement('div');
-        
+        read_status.className = 'read_status';
+        const delete_button = document.createElement('button');
+        delete_button.className = 'delete_button';
+        const delete_img = document.createElement('img');
+        delete_img.className = 'delete_button_icon';
+        delete_img.setAttribute('src', './delete.svg');
         // console.log("Adding values");
         title.innerText = book.title;
         author.innerText = book.author;
         booklength.innerText = book.booklength;
         read_status.innerText = book.read_status;
         // console.log("done adding");
-
+        delete_button.appendChild(delete_img);
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(booklength);
         card.appendChild(read_status);
+        card.appendChild(delete_button);
         document.getElementById('content').appendChild(card);
     });
 }
+
+document.getElementById('addbook').addEventListener('click', function(e){
+    const id = this.id;
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read_status = document.getElementById('read_status').checked;
+    createAndAddBookObj(title,author,pages,read_status);
+    displayBooks()
+})
