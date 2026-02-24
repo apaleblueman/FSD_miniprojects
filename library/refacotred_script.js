@@ -18,34 +18,46 @@ function displayBooks(){
         
         const card = document.createElement('div');
         card.className = 'card';
-        
+        const rightDiv = document.createElement('div');
+        const names = document.createElement('div');
+        names.className = "names";
         const title = document.createElement('div');
         title.className = 'title';
         const author = document.createElement('div');
         author.className = 'author';
+        names.appendChild(title);
+        names.appendChild(author);
+        rightDiv.appendChild(names);
+        const status = document.createElement('div');
+        status.className = "status";
         const booklength = document.createElement('div');
         booklength.className = 'booklength';
         const read_status = document.createElement('div');
         read_status.className = 'read_status';
+        status.appendChild(booklength);
+        status.appendChild(read_status);
+        const toggle = document.createElement('button');
+        toggle.innerText = "toggle";
+        toggle.className = "toggle";
+        toggle.id = "toggle";
+        status.appendChild(toggle);
+        rightDiv.appendChild(status);
         const delete_button = document.createElement('button');
-        delete_button.className = 'delete_button';
-        delete_button.id = 'delete_button';
+        delete_button.className = 'delete';
+        delete_button.id = 'delete';
         const delete_img = document.createElement('img');
         delete_img.className = 'delete_button_icon';
         delete_img.id = 'delete_button_icon';
         delete_img.dataset.id = book.id;
         delete_img.setAttribute('src', './delete.svg');
+        delete_button.appendChild(delete_img);
         // console.log("Adding values");
         title.innerText = book.title;
         author.innerText = book.author;
         booklength.innerText = book.booklength;
         read_status.innerText = book.read_status;
-        
-        delete_button.appendChild(delete_img);
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(booklength);
-        card.appendChild(read_status);
+       
+        card.appendChild(rightDiv);
         card.appendChild(delete_button);
         document.getElementById('content').appendChild(card);
 

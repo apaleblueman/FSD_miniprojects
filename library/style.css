@@ -74,8 +74,8 @@ body{
 .card{
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
-    /* justify-content:center; */
+    align-items: center;
+    justify-content:center;
     color:white;
     margin: 2rem;
     padding: 0.5rem;
@@ -85,12 +85,26 @@ body{
     width: 200px;
     height: 200px;
     overflow: scroll;
+    
+}
+.card .names{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.card .status{
+   display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
 }
 .card .title{
     font-size: xx-large;
-}
-.card > button{
-    
+   
 }
 .delete_button{
     background-color: transparent;
@@ -98,11 +112,11 @@ body{
     
     
 }
-.delete>img{
-    filter: invert(1) brightness(0);
+.delete_button>img{
+    filter: brightness(1);
 }
-.delete>img:hover{
-    filter: invert(0);
+.delete_button>img:hover{
+    filter: invert(1);
 }
 .content{
     display: flex;
