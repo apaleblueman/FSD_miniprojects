@@ -40,7 +40,7 @@ function displayBooks(){
         author.innerText = book.author;
         booklength.innerText = book.booklength;
         read_status.innerText = book.read_status;
-        // console.log("done adding");
+        
         delete_button.appendChild(delete_img);
         card.appendChild(title);
         card.appendChild(author);
@@ -48,8 +48,6 @@ function displayBooks(){
         card.appendChild(read_status);
         card.appendChild(delete_button);
         document.getElementById('content').appendChild(card);
-
-        
 
     });
 }
@@ -59,8 +57,19 @@ document.getElementById('addbook').addEventListener('click', function(e){
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const read_status = document.getElementById('read_status').checked;
-    createAndAddBookObj(title,author,pages,read_status);
-    displayBooks()
+    const read_string = isread(read_status);
+    
+    if(!title || !author || !pages){
+        alert("please fill all details!");
+        return;
+    }
+    if(!(pages>0)){
+        alert("pages cant be negative!");
+        return;
+    }
+
+    createAndAddBookObj(title,author,pages,read_string);
+    displayBooks();
 })
 
 document.getElementById('content').addEventListener('click', function(event){
@@ -73,6 +82,13 @@ document.getElementById('content').addEventListener('click', function(event){
             
         }
         
-
-        
 })
+
+function isread(read_status){
+        if(read_status == true){
+            return "read"
+        }
+        else{
+            return "not read yet"
+        }
+}

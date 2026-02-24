@@ -7,33 +7,36 @@
     <script src="./refacotred_script.js" defer></script>
     <link rel="stylesheet" href="./style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Betania+Patmos+In&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Betania+Patmos+In&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="topbar">
-        <div class="heading betania-patmos-in-regular">Libray UI for Odin Project<img src="./book.svg"></div>
-        <div class="userinput betania-patmos-in-regular">
+        <div class="heading bebas-neue-regular"><img src="./book.svg">BookMark</div>
+        <div class="userinput .bebas-neue-regular">
         <div class="sub-heading-container">
-            <span class="sub-heading">Add a new book</span>
-            <button class="plus" id="userinput" command="show-modal" commandfor="my-dialog"><img src="./add_circle.svg"/></button>
+            <button class="plus"  id="userinput" command="show-modal" commandfor="my-dialog">
+                 <span class="tooltip-text">Add a new book</span>
+                <img src="./add_circle.svg"/></button>
         </div>
-        </div>
+    </div>
     </div>  
         <dialog id="my-dialog">
             <div class="my-dialog">
             <form method="get" class="my-dialog">
-                <div class="input-container"><label for="title">title of book:</label><input type="text" name="title" id="title"><br></div>
-                <div class="input-container"><label for="author">Name of author:</label><input type="text" name="author" id="author"><br></div>
-                <div class="input-container"><label for="pages">Number of pages:</label><input type="number" name="pages" id="pages"><br></div>
-                <div class="input-container"><label for="read_status">Marked Finished:</label><input type="checkbox" name="read_status" id="read_status"></div>
+                <div class="input-container"><label for="title">title of book:</label><input type="text" name="title" id="title" required><br></div>
+                <div class="input-container"><label for="author">Name of author:</label><input type="text" name="author" id="author" required><br></div>
+                <div class="input-container"><label for="pages">Number of pages:</label><input type="number" name="pages" id="pages" required><br></div>
+                <div class="input-container"><label for="read_status">Marked Finished:</label><input type="checkbox" name="read_status" id="read_status" required></div>
             </form>
             <div class="button-container">
-                            <button commandfor="my-dialog" command="close">cancel</button>
-                            <button type="submit" id="addbook">Submit</button>
+                <button commandfor="my-dialog" command="close">cancel</button>
+                <button type="submit" id="addbook">Submit</button>
             </div>
             </div>
         </dialog>
+        <br>
         <div class="content" id="content">
                 
         </div>
