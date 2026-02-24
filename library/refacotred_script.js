@@ -18,6 +18,7 @@ function displayBooks(){
         
         const card = document.createElement('div');
         card.className = 'card';
+        
         const title = document.createElement('div');
         title.className = 'title';
         const author = document.createElement('div');
@@ -28,8 +29,11 @@ function displayBooks(){
         read_status.className = 'read_status';
         const delete_button = document.createElement('button');
         delete_button.className = 'delete_button';
+        delete_button.id = 'delete_button';
         const delete_img = document.createElement('img');
         delete_img.className = 'delete_button_icon';
+        delete_img.id = 'delete_button_icon';
+        delete_img.dataset.id = book.id;
         delete_img.setAttribute('src', './delete.svg');
         // console.log("Adding values");
         title.innerText = book.title;
@@ -44,9 +48,11 @@ function displayBooks(){
         card.appendChild(read_status);
         card.appendChild(delete_button);
         document.getElementById('content').appendChild(card);
+
+        
+
     });
 }
-
 document.getElementById('addbook').addEventListener('click', function(e){
     const id = this.id;
     const title = document.getElementById('title').value;
@@ -55,4 +61,18 @@ document.getElementById('addbook').addEventListener('click', function(e){
     const read_status = document.getElementById('read_status').checked;
     createAndAddBookObj(title,author,pages,read_status);
     displayBooks()
+})
+
+document.getElementById('content').addEventListener('click', function(event){
+        if(event.target.id=='delete_button_icon'){
+            const delID = event.target.dataset.id;
+            const filtered = book_list.filter(book => book.id !== delID);
+            book_list.length = 0;
+            book_list.push(...filtered);
+            displayBooks()
+            
+        }
+        
+
+        
 })
