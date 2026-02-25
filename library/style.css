@@ -79,12 +79,13 @@ body{
     color:white;
     margin: 2rem;
     padding: 0.5rem;
+    border-left:solid 20px rgb(79, 11, 11);
     border-radius: 20px;
     background-color:#bc6c25;
     flex-wrap: wrap;
-    width: 200px;
-    height: 200px;
-    overflow: scroll;
+    width: 250px;
+    height: auto;
+    overflow: hidden;
     
 }
 .card .names{
@@ -103,19 +104,24 @@ body{
     flex-direction: column; 
 }
 .card .title{
-    font-size: xx-large;
+    font-size: x-large;
+    font-weight: bold;
    
 }
-.delete_button{
-    background-color: transparent;
-    border: none;
-    
-    
+.card .read_status{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
 }
-.delete_button>img{
+.card button{
+    background-color: transparent;
+    border:none;
+}
+.card img{
     filter: brightness(1);
 }
-.delete_button>img:hover{
+.card img:hover{
     filter: invert(1);
 }
 .content{

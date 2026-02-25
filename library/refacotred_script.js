@@ -16,49 +16,53 @@ function displayBooks(){
     document.getElementById('content').innerHTML = ""
     book_list.forEach(book => {
         
-        const card = document.createElement('div');
-        card.className = 'card';
-        const rightDiv = document.createElement('div');
-        const names = document.createElement('div');
-        names.className = "names";
+        const card = document.createElement('card');
+        card.className = "card";
+        
+        const rightContainer = document.createElement('div');
+        card.appendChild(rightContainer);
+        const names_div = document.createElement('div');
+        names_div.className = "names";
+        const status_div = document.createElement('div');
+        status_div.className = "status";
+        
         const title = document.createElement('div');
-        title.className = 'title';
+        title.className = "title";
         const author = document.createElement('div');
-        author.className = 'author';
-        names.appendChild(title);
-        names.appendChild(author);
-        rightDiv.appendChild(names);
-        const status = document.createElement('div');
-        status.className = "status";
+        author.className = "author";
+        
         const booklength = document.createElement('div');
-        booklength.className = 'booklength';
+        booklength.className = "pages";
         const read_status = document.createElement('div');
-        read_status.className = 'read_status';
-        status.appendChild(booklength);
-        status.appendChild(read_status);
+        read_status.className = "read_status";
         const toggle = document.createElement('button');
-        toggle.innerText = "toggle";
         toggle.className = "toggle";
-        toggle.id = "toggle";
-        status.appendChild(toggle);
-        rightDiv.appendChild(status);
+        const toggle_button_icon = document.createElement('img');
+        toggle_button_icon.className = "toggle_button_icon";
+        toggle_button_icon.setAttribute('src',"./change.svg");
+        toggle.appendChild(toggle_button_icon)
         const delete_button = document.createElement('button');
-        delete_button.className = 'delete';
-        delete_button.id = 'delete';
-        const delete_img = document.createElement('img');
-        delete_img.className = 'delete_button_icon';
-        delete_img.id = 'delete_button_icon';
-        delete_img.dataset.id = book.id;
-        delete_img.setAttribute('src', './delete.svg');
-        delete_button.appendChild(delete_img);
+        const delete_button_icon = document.createElement('img');
+        delete_button.className = "delete_button_icon";
+        delete_button_icon.setAttribute('src', './delete.svg')
+        delete_button_icon.id = "delete_button_icon";
+        delete_button_icon.dataset.id = book.id;
+        delete_button.appendChild(delete_button_icon);
+        card.appendChild(delete_button);
         // console.log("Adding values");
         title.innerText = book.title;
         author.innerText = book.author;
-        booklength.innerText = book.booklength;
+        booklength.innerText = book.booklength+" pages";
         read_status.innerText = book.read_status;
-       
-        card.appendChild(rightDiv);
-        card.appendChild(delete_button);
+        // toggle.innerText = "toggle";
+        
+        rightContainer.appendChild(names_div);
+        rightContainer.appendChild(status_div);
+        names_div.appendChild(title);
+        names_div.appendChild(author);
+        status_div.appendChild(booklength);
+        status_div.appendChild(read_status);
+        read_status.appendChild(toggle);
         document.getElementById('content').appendChild(card);
 
     });
