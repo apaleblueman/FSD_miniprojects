@@ -1,124 +1,149 @@
+//book array
 const book_list = [];
+
+//book object and constructor
 function BookObj(title, author, booklength, read_status){
             if(!(new.target)){ console.log("use new keyword when creatinh this object!");return;}
             this.id = crypto.randomUUID();
             this.title = title;
+            this.booklength = booklength;
             this.author = author;
             this.read_status = read_status;
 };
+//adding a new object to book array
 function createAndAddBookObj(title, author, booklength, read_status){
             const bookItem = new BookObj(title, author, booklength, read_status);
             book_list.push(bookItem);
 }
+//showing books
 function displayBooks(){
     document.getElementById('content').innerHTML = ""
     book_list.forEach(book => {
         
-        const card = document.createElement('div');
-        card.className = 'card';
-        const title = document.createElement('div');
-        const author = document.createElement('div');
-        const booklength = document.createElement('div');
-        const read_status = document.createElement('div');
+        const card = document.createElement('card');
+        // card.className = "card";
+        card.classList = "card betania-patmos-in-regular"
+        const rightContainer = document.createElement('div');
+        card.appendChild(rightContainer);
+        const names_div = document.createElement('div');
+        names_div.className = "names";
+        const status_div = document.createElement('div');
+        status_div.className = "status";
         
+        const title = document.createElement('div');
+        title.className = "title";
+        const author = document.createElement('div');
+        author.className = "author";
+        
+        const booklength = document.createElement('div');
+        booklength.className = "pages";
+        const read_status = document.createElement('div');
+        read_status.className = "read_status";
+        const toggle = document.createElement('button');
+        toggle.className = "toggle";
+        
+        const toggle_button_icon = document.createElement('img');
+        toggle_button_icon.className = "toggle_button_icon";
+        toggle_button_icon.id = "toggle";
+        toggle_button_icon.setAttribute('src',"./change.svg");
+        toggle.appendChild(toggle_button_icon)
+        const delete_button = document.createElement('button');
+        const delete_button_icon = document.createElement('img');
+        delete_button.className = "delete_button_icon";
+        delete_button_icon.setAttribute('src', './delete.svg')
+        delete_button_icon.id = "delete_button_icon";
+        delete_button_icon.dataset.id = book.id;
+        delete_button.appendChild(delete_button_icon);
+        card.appendChild(delete_button);
         // console.log("Adding values");
         title.innerText = book.title;
-        author.innerText = book.author;
-        booklength.innerText = book.booklength;
+        author.innerText = "written by" + book.author;
+        booklength.innerText = book.booklength+" pages";
         read_status.innerText = book.read_status;
-        // console.log("done adding");
-
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(booklength);
-        card.appendChild(read_status);
+        // toggle.innerText = "toggle";
+        
+        rightContainer.appendChild(names_div);
+        rightContainer.appendChild(status_div);
+        names_div.appendChild(title);
+        names_div.appendChild(author);
+        status_div.appendChild(booklength);
+        status_div.appendChild(read_status);
+        read_status.appendChild(toggle);
         document.getElementById('content').appendChild(card);
+
     });
 }
-// let myLibrary = [];
-// function Book(name, author, pages, read) {
-//     if(!(new.target)){
-//         console.log("use new keyword when creating objects using constructor!");
-//         return;
-//     }
-//     this.id = crypto.randomUUID();
-//     this.name = name;
-//     this.author = author;
-//     this.pages = pages;
-//     this.read = read;
-//     // this.info = function(){
-//     //     console.log(id, name, author, pages, read);
-//     // }
-// }
-// function addBookToLibrary(name, author, pages, read) {
-//   // take params, create a book then store it in the array
-//   let newbook = new Book(name, author, pages, read);
-//   myLibrary.push(newbook);
-// }
-
-
-// const contentWindow = document.getElementById('content');
-
-// function displayBooks(){
-//     contentWindow.innerHTML = "";
-//     myLibrary.forEach(bookObj => {
-                
-//         // console.log(`Book ID${bookObj.id}`);
-//         const card = document.createElement("div");
-//         card.className = "card";
-//         card.setAttribute('id', bookObj.id);
-//         const bookname = document.createElement("h1"); 
-//         const author = document.createElement("h3"); 
-//         const pages = document.createElement("span"); 
-//         const read = document.createElement("span");
-//         const remove = document.createElement("button");
-//         const icon = document.createElement("img");
-//         icon.setAttribute("src", "./delete.svg");
-//         remove.className = "delete";
-//         // remove.id = 'delete';
-//         remove.setAttribute("id", "delete");
-
-//         remove.appendChild(icon);
-
-//         bookname.textContent = bookObj.name;
-//         author.textContent = bookObj.author;
-//         pages.textContent = bookObj.pages;
-//         read.textContent = bookObj.read;
-
-//         card.appendChild(bookname);
-//         card.appendChild(author);
-//         card.appendChild(pages);
-//         card.appendChild(read);
-//         card.appendChild(remove);
-//         contentWindow.appendChild(card)
-        
-//         icon.addEventListener('click', function(){
-//             myLibrary = myLibrary.filter(book => book.id !== bookObj.id);
-//             card.remove();
-//         })
-//     });
-
-// }
-
-// document.getElementById('addbook').addEventListener('click', function(e){
-//     const name = document.getElementById('name').value;
-//     const author = document.getElementById('author').value;
-//     const pages = document.getElementById('pages').value;
-//     const read = document.getElementById('read').checked;
-//     let read_line;
-//     if(read == true){
-//         read_line = "read";
-//     }
-//     else{
-//         read_line = "not read yet"
-//     }
-//     // const name = "test";
-//     // const author = "test";
-//     // const pages = "test";
-//     // const read = "test";
-//     addBookToLibrary(name, author, pages, read_line);
-//     displayBooks();
-//     e.preventDefault();
+//get user input via dialog and form
+document.getElementById('addbook').addEventListener('click', function(e){
+    const id = this.id;
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read_status = document.getElementById('read_status').checked;
+    const read_string = isread(read_status);
     
-// })
+    if(!title || !author || !pages){
+        alert("please fill all details!");
+        return;
+    }
+    if(!(pages>0)){
+        alert("pages cant be negative!");
+        return;
+    }
 
+    createAndAddBookObj(title,author,pages,read_string);
+    displayBooks();
+})
+
+//deleting functionality
+document.getElementById('content').addEventListener('click', function(event){
+        if(event.target.id=='delete_button_icon'){
+            const delID = event.target.dataset.id;
+            const filtered = book_list.filter(book => book.id !== delID);
+            book_list.length = 0;
+            book_list.push(...filtered);
+            displayBooks()
+            
+        }
+        
+})
+//clear all books
+document.getElementById('clear').addEventListener('click', function(){
+        // alert("clear");       
+        book_list.length = 0;
+        displayBooks(); 
+});
+//toggle read status
+document.getElementById('content').addEventListener('click', function(event){
+        if(event.target.id=='toggle'){
+            if(event.target.parentNode.parentNode.innerText == "read")
+                read_flag = "not read yet"
+            else
+                read_flag = "read"
+            event.target.parentNode.parentNode.innerHTML = `${read_flag}<button class="toggle"><img class="toggle_button_icon" id="toggle" src="./change.svg"></button>`;
+        }
+        
+})
+//helper function for read status
+function isread(read_status){
+        if(read_status == true){
+            return "read"
+        }
+        else{
+            return "not read yet"
+        }
+}
+    
+
+//populate with sample books
+createAndAddBookObj('The Hobbit', 'J.R.R. Tolkien', 310, isread(true));
+createAndAddBookObj('1984', 'George Orwell', 328, isread(false));
+createAndAddBookObj('Pride and Prejudice', 'Jane Austen', 432, isread(true));
+createAndAddBookObj('The Catcher in the Rye', 'J.D. Salinger', 277, isread(false));
+createAndAddBookObj('Dune', 'Frank Herbert', 896, isread(true));
+createAndAddBookObj('To Kill a Mockingbird', 'Harper Lee', 281, isread(true));
+createAndAddBookObj('Moby-Dick', 'Herman Melville', 720, isread(false));
+createAndAddBookObj('The Great Gatsby', 'F. Scott Fitzgerald', 180, isread(true));
+createAndAddBookObj('War and Peace', 'Leo Tolstoy', 1225, isread(false));
+createAndAddBookObj('The Alchemist', 'Paulo Coelho', 208, isread(true));
+displayBooks();

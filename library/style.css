@@ -1,9 +1,7 @@
-/* *{
-    margin: 0;
-    padding: 0;
-} */
+
 body{
-    background: #fefae0;
+    background: #fcffc8;
+    
     
 }
 
@@ -67,11 +65,12 @@ body{
     color: white;
 }
 #my-dialog{
-    background-color:#2a7b9b5a;
+    background-color:#3a2200;
     border: none;
     border-radius: 20px;
 }
 .card{
+    font-size: larger;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -127,6 +126,7 @@ body{
 .content{
     display: flex;
     flex-wrap: wrap;    
+    justify-content: center;
 }
 img{
     filter: brightness(0) invert(1);
@@ -155,5 +155,26 @@ img{
 }
 
 .plus:hover .tooltip-text {
+    opacity: 1;
+}
+
+.tooltip-text-clear {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translate(156%, -50%);
+    white-space: nowrap;
+    background: #333;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    margin-right: 8px;
+}
+
+.plus:hover .tooltip-text-clear {
     opacity: 1;
 }

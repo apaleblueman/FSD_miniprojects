@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./refacotred_script.js" defer></script>
+    <script src="./script.js" defer></script>
     <link rel="stylesheet" href="./style.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,10 @@
             <button class="plus"  id="userinput" command="show-modal" commandfor="my-dialog">
                  <span class="tooltip-text">Add a new book</span>
                 <img src="./add_circle.svg"/></button>
+                 <button class="plus"  id="clear">
+                 <span class="tooltip-text-clear">clear library</span>
+                <img src="./clear.svg"/>
+            </button>
         </div>
     </div>
     </div>  
@@ -38,21 +42,6 @@
         </dialog>
         <br>
         <div class="content" id="content">
-            <div class="card">
-                <div>
-                <div class="names">
-                    <div class="title">Title</div>
-                    <div class="author">Author</div>
-                </div>
-                <div class="status">
-                    <div class="pages">200</div>
-                    <div class="read_status">not read yet
-                    <button><img src="change.svg"/></button>
-                    </div>
-                </div>
-                </div>
-                <button class="delete_button_icon"><img src="delete.svg"></button>
-            </div>
                 
         </div>
 </body>
