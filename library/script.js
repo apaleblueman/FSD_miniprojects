@@ -10,6 +10,9 @@ function BookObj(title, author, booklength, read_status){
             this.author = author;
             this.read_status = read_status;
 };
+BookObj.prototype.changeRead = function(){
+        this.read_status = this.read_status === "read" ? "not read yet" : "read";
+}
 //adding a new object to book array
 function createAndAddBookObj(title, author, booklength, read_status){
             const bookItem = new BookObj(title, author, booklength, read_status);
@@ -39,12 +42,13 @@ function displayBooks(){
         booklength.className = "pages";
         const read_status = document.createElement('div');
         read_status.className = "read_status";
+
         const toggle = document.createElement('button');
         toggle.className = "toggle";
-        
         const toggle_button_icon = document.createElement('img');
         toggle_button_icon.className = "toggle_button_icon";
         toggle_button_icon.id = "toggle";
+        toggle_button_icon.dataset.id = book.id;
         toggle_button_icon.setAttribute('src',"./change.svg");
         toggle.appendChild(toggle_button_icon)
         const delete_button = document.createElement('button');
@@ -95,7 +99,7 @@ document.getElementById('addbook').addEventListener('click', function(e){
     displayBooks();
 })
 
-//deleting functionality
+//deleting and toggle functionality
 document.getElementById('content').addEventListener('click', function(event){
         if(event.target.id=='delete_button_icon'){
             const delID = event.target.dataset.id;
@@ -103,6 +107,15 @@ document.getElementById('content').addEventListener('click', function(event){
             book_list.length = 0;
             book_list.push(...filtered);
             displayBooks()
+        }
+        else if(event.target.id == 'toggle'){
+            // console.log("toggle status of book " + event.target.dataset.id)
+            const ID = event.target.dataset.id;
+            const changed = book_list.find(book => book.id == ID);
+            if(changed){
+                changed.changeRead();
+                displayBooks()
+            }
             
         }
         
@@ -113,17 +126,7 @@ document.getElementById('clear').addEventListener('click', function(){
         book_list.length = 0;
         displayBooks(); 
 });
-//toggle read status
-document.getElementById('content').addEventListener('click', function(event){
-        if(event.target.id=='toggle'){
-            if(event.target.parentNode.parentNode.innerText == "read")
-                read_flag = "not read yet"
-            else
-                read_flag = "read"
-            event.target.parentNode.parentNode.innerHTML = `${read_flag}<button class="toggle"><img class="toggle_button_icon" id="toggle" src="./change.svg"></button>`;
-        }
-        
-})
+
 //helper function for read status
 function isread(read_status){
         if(read_status == true){
