@@ -61,7 +61,7 @@ function displayBooks(){
         card.appendChild(delete_button);
         // console.log("Adding values");
         title.innerText = book.title;
-        author.innerText = "written by" + book.author;
+        author.innerText = "written by " + book.author;
         booklength.innerText = book.booklength+" pages";
         read_status.innerText = book.read_status;
         // toggle.innerText = "toggle";
