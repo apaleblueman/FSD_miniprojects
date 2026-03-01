@@ -4,7 +4,7 @@
 ## 🚀 Future Enhancements
 
 ### 📋 Core Improvements
-- [ ] **Input Validation** – Add checks for empty fields, valid salary numbers, and prevent duplicate employee names
+- [x] **Input Validation** – Add checks for empty fields, valid salary numbers
 - [ ] **Confirm Before Delete** – Ask "Are you sure?" before permanently removing an employee
 - [ ] **Better Display Format** – Use `console.table()` for cleaner employee listings
 - [ ] **Search by Name** – Add case-insensitive partial name matching
