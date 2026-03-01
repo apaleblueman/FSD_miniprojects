@@ -48,10 +48,14 @@ async function main() {
                 case '1':
                     const name = await rl.question('Name: ');
                     const position = await rl.question('Position: ');
-                    const salary = await rl.question('Salary: ');
-                    const new_emp = addEmployee(name,position,salary);
-                    console.log("added new employee "+ new_emp.name);
-                    // await rl.question("press enter to go back menu")
+                    const salary = Number(await rl.question('Salary: '));
+                    if(!name|| !position || !salary || salary <= 0 || salary === 'NaN'){
+                        console.log("Enter valid data!");
+                    }
+                    else{
+                        const new_emp = addEmployee(name,position,salary);
+                        console.log("added new employee "+ new_emp.name);
+                    }
                     break;
                 case '2':
                     if(employees.length !=0)
@@ -86,11 +90,14 @@ async function main() {
                     // await rl.question("press enter to go back menu");
                     break;
                 case '4':
+                    
                     const updateID = await rl.question("Enter employe id to update:");
                     const newname = await rl.question('Name: ');
                     const newposition = await rl.question('Position: ');
                     const newsalary = await rl.question('Salary: ');
-
+                    if(!newname|| !newposition || !newsalary || newsalary <= 0 || newsalary === 'NaN'){
+                        console.log("Enter valid data!");
+                    }
                     const empToUpdate = searchEmployee(updateID);
                     if(empToUpdate){
                         console.log("Found:");
@@ -113,7 +120,7 @@ async function main() {
                     console.log("invalid input");
                     break;
                 }
-                await rl.question("press enter");
+                await rl.question("press enter to continue");
                 
             }
             rl.close(); 
