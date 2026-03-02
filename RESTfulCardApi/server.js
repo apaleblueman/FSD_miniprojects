@@ -28,14 +28,50 @@ app.get('/cards/:id', (req,res)=>{
 //post a new card
 app.post('/cards', (req,res)=>{
 	const newCard = req.body;
-	if(!newCard){rs.status(400).json({message:`cards cant be empty!`})}
+	if(!newCard){res.status(400).json({message:`cards cant be empty!`})}
 	else{
-		newCard.id = Date.now();
+		newCard.id = crypto.randomUUID();
 		cards.push(newCard);
 		res.status(201).json({message:`new card created`,newCard});
-		
 	}
 });
+//delete routes
+//delete a specific card
+app.delete('/cards/:id', (req,res) =>{
+	const cardIDToDelete = req.params.id;
+	const cardIndexToDelete = cards.findIndex((cardObj)=>cardObj.id == cardIDToDelete);
+	if(cardIndexToDelete < 0 || !(cardIndexToDelete)){
+		res.status(404).json({message:`card with id ${cardIDToDelete} doesnot exist!`});
+	}
+	cards.splice(cardIndexToDelete, 1);
+	res.status(204).json({message:`card with id ${cardIDToDelete} deleted!`});
+});
+//update routes using put and patch
+//put routes
+app.put('/cards/:id', (req,res)=>{
+	const cardIDToUpdate = req.params.id;
+	const cardToUpdate = cards.find((cardObj)=>cardObj.id == cardIDToUpdate);
+	if(!cardToUpdate ){
+		res.status(404).json({message:`card with id ${cardIDToUpdate} doesnot exist!`});
+	}
+	if(!req.body||!req.body.name||!req.body.suit||!req.body.value||!req.body.quantity||!req.body.condition){
+		res.status(400).json({message:`Card details must not be empty`});
+	}
+	else{
+		cards.forEach((cardObj)=>{
+			cardObj.name = req.body.name;
+			cardObj.suit = req.body.suit;
+			cardObj.value = req.body.value;
+			cardObj.quantity = req.body.quantity;
+			cardObj.condition= req.body.condition;
+			
+		});
+		cardToUpdate.id = cardIDToUpdate;
+		res.status(200).json({message:`updated card `,cardToUpdate});
+	}
+});
+
+//start server
 app.listen(port,()=>{
 	console.log("server is live on http://localhost:3000/");
 });
