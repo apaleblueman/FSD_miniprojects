@@ -9,9 +9,16 @@ app.use(express.json());
 app.get('/', (req,res)=>{
 	res.status(200).json({message:"Welcome to RESTapi for card collection"});
 });
-//get all cards
+//get all cards or all cards with a suit
 app.get('/cards', (req,res)=>{
-	res.json({message:"Displaying all cards",cards});
+	if(req.query.suit){
+		const result = cards.filter((cardObj) => cardObj.suit.toLowerCase() === req.query.suit.toLowerCase());
+		res.json({message:`Displaying all cards with ${req.query.suit}`, "cards":result});	
+	}
+	else{
+		res.json({message:"Displaying all cards",cards});
+	}
+
 });
 //get a specific card
 app.get('/cards/:id', (req,res)=>{
@@ -24,8 +31,6 @@ app.get('/cards/:id', (req,res)=>{
 		res.status(404).json({message:`Card doesnt exist with id ${cardID} `});
 	}
 });
-
-
 //post routes
 //post a new card
 app.post('/cards', (req,res)=>{
