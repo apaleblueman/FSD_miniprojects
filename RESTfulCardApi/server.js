@@ -24,6 +24,8 @@ app.get('/cards/:id', (req,res)=>{
 		res.status(404).json({message:`Card doesnt exist with id ${cardID} `});
 	}
 });
+
+
 //post routes
 //post a new card
 app.post('/cards', (req,res)=>{
@@ -44,7 +46,7 @@ app.delete('/cards/:id', (req,res) =>{
 		res.status(404).json({message:`card with id ${cardIDToDelete} doesnot exist!`});
 	}
 	cards.splice(cardIndexToDelete, 1);
-	res.status(204).json({message:`card with id ${cardIDToDelete} deleted!`});
+	res.status(200).json({message:`card with id ${cardIDToDelete} deleted!`});
 });
 //update routes using put and patch
 //put routes
@@ -54,18 +56,15 @@ app.put('/cards/:id', (req,res)=>{
 	if(!cardToUpdate ){
 		res.status(404).json({message:`card with id ${cardIDToUpdate} doesnot exist!`});
 	}
-	if(!req.body||!req.body.name||!req.body.suit||!req.body.value||!req.body.quantity||!req.body.condition){
+	else if(!req.body||!req.body.name||!req.body.suit||!req.body.value||!req.body.quantity||!req.body.condition){
 		res.status(400).json({message:`Card details must not be empty`});
 	}
 	else{
-		cards.forEach((cardObj)=>{
-			cardObj.name = req.body.name;
-			cardObj.suit = req.body.suit;
-			cardObj.value = req.body.value;
-			cardObj.quantity = req.body.quantity;
-			cardObj.condition= req.body.condition;
-			
-		});
+		cardToUpdate.name = req.body.name;
+		cardToUpdate.suit = req.body.suit;
+		cardToUpdate.value = req.body.value;
+		cardToUpdate.quantity = req.body.quantity;
+		cardToUpdate.condition= req.body.condition;
 		cardToUpdate.id = cardIDToUpdate;
 		res.status(200).json({message:`updated card `,cardToUpdate});
 	}
