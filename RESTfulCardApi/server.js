@@ -53,7 +53,7 @@ app.delete('/cards/:id', (req,res) =>{
 	cards.splice(cardIndexToDelete, 1);
 	res.status(200).json({message:`card with id ${cardIDToDelete} deleted!`});
 });
-//update routes using put and patch
+//update routes using put 
 //put routes
 app.put('/cards/:id', (req,res)=>{
 	const cardIDToUpdate = req.params.id;
@@ -73,6 +73,32 @@ app.put('/cards/:id', (req,res)=>{
 		cardToUpdate.id = cardIDToUpdate;
 		res.status(200).json({message:`updated card `,cardToUpdate});
 	}
+});
+//put route for replacement of first card with second
+app.put('/cards/', (req,res)=>{
+	const { firstCard, secondCard } = req.body;
+
+	if(!firstCard || !secondCard){
+		res.status(400).json({ message: "Both firstCard and secondCard are required" });
+	}
+	const cardToReplace = cards.find((cardObj)=>{
+		   return cardObj.name === firstCard.name &&
+           cardObj.suit === firstCard.suit &&
+           cardObj.value === firstCard.value &&
+           cardObj.quantity === firstCard.quantity &&
+           cardObj.condition === firstCard.condition;
+	});
+	if (!cardToReplace) {
+    	res.status(404).json({ message: "First card not found in collection" });
+	}
+	const index = cards.findIndex(card => card.id === cardToReplace.id);
+	secondCard.id = crypto.randomUUID();
+	cards.splice(index, 1, secondCard);
+	res.status(200).json({
+		message: "First card replaced with second card",
+		removed: cardToReplace,
+		added: secondCard
+	});
 });
 
 //start server
