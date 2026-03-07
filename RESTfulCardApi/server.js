@@ -1,4 +1,5 @@
 const express = require('express');
+const crypto = require('crypto');
 const cards = require('./cards.js');
 const port = 3000;
 const app = express();
@@ -47,7 +48,7 @@ app.post('/cards', (req,res)=>{
 app.delete('/cards/:id', (req,res) =>{
 	const cardIDToDelete = req.params.id;
 	const cardIndexToDelete = cards.findIndex((cardObj)=>cardObj.id == cardIDToDelete);
-	if(cardIndexToDelete < 0 || !(cardIndexToDelete)){
+	if(cardIndexToDelete < 0 ){
 		res.status(404).json({message:`card with id ${cardIDToDelete} doesnot exist!`});
 	}
 	cards.splice(cardIndexToDelete, 1);
