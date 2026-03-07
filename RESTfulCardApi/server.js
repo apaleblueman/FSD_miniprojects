@@ -33,7 +33,7 @@ app.get('/cards', (req,res)=>{
 //get a specific card
 app.get('/cards/:id', (req,res)=>{
 	const cardID = req.params.id;
-	const foundCard = cards.find((CardObj)=>CardObj.id === cardID);
+	const foundCard = cards.find((CardObj)=>CardObj.id === parseInt(cardID));
 	if(foundCard){
 		res.status(200).json({message:`Displaying card with id ${cardID}`,foundCard});
 	}
@@ -67,7 +67,7 @@ app.post('/cards', (req,res)=>{
 //delete a specific card
 app.delete('/cards/:id', (req,res) =>{
 	const cardIDToDelete = req.params.id;
-	const cardIndexToDelete = cards.findIndex((cardObj)=>cardObj.id === cardIDToDelete);
+	const cardIndexToDelete = cards.findIndex((cardObj)=>cardObj.id === parseInt(cardIDToDelete));
 	if(cardIndexToDelete < 0 ){
 		return res.status(404).json({message:`card with id ${cardIDToDelete} doesnot exist!`});
 	}
@@ -78,7 +78,7 @@ app.delete('/cards/:id', (req,res) =>{
 //put routes
 app.put('/cards/:id', (req,res)=>{
 	const cardIDToUpdate = req.params.id;
-	const cardToUpdate = cards.find((cardObj)=>cardObj.id === cardIDToUpdate);
+	const cardToUpdate = cards.find((cardObj)=>cardObj.id === parseInt(cardIDToUpdate));
 	if(!cardToUpdate ){
 		return res.status(404).json({message:`card with id ${cardIDToUpdate} doesnot exist!`});
 	}
