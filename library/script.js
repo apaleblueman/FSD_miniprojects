@@ -23,7 +23,7 @@ function displayBooks(){
     document.getElementById('content').innerHTML = ""
     book_list.forEach(book => {
         
-        const card = document.createElement('card');
+        const card = document.createElement('div');
         // card.className = "card";
         card.classList = "card betania-patmos-in-regular"
         const rightContainer = document.createElement('div');

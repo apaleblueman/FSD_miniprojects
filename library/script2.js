@@ -1,6 +1,6 @@
 const book_list = [];
 class Book{
-    constructor(title,booklength,author,read_status) {
+    constructor(title, author, booklength, read_status) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.booklength = booklength;
