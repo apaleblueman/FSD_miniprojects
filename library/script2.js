@@ -1,29 +1,26 @@
-//book array
 const book_list = [];
-
-//book object and constructor
-function BookObj(title, author, booklength, read_status){
-            if(!(new.target)){ console.log("use new keyword when creatinh this object!");return;}
-            this.id = crypto.randomUUID();
-            this.title = title;
-            this.booklength = booklength;
-            this.author = author;
-            this.read_status = read_status;
-};
-BookObj.prototype.changeRead = function(){
+class Book{
+    constructor(title, author, booklength, read_status) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.booklength = booklength;
+        this.author = author;
+        this.read_status = read_status;
+    }   
+    changeRead() {
         this.read_status = this.read_status === "read" ? "not read yet" : "read";
+    }
 }
-//adding a new object to book array
+
 function createAndAddBookObj(title, author, booklength, read_status){
-            const bookItem = new BookObj(title, author, booklength, read_status);
+            const bookItem = new Book(title, author, booklength, read_status);
             book_list.push(bookItem);
 }
-//showing books
 function displayBooks(){
     document.getElementById('content').innerHTML = ""
     book_list.forEach(book => {
         
-        const card = document.createElement('div');
+        const card = document.createElement('card');
         // card.className = "card";
         card.classList = "card betania-patmos-in-regular"
         const rightContainer = document.createElement('div');
@@ -77,7 +74,6 @@ function displayBooks(){
 
     });
 }
-//get user input via dialog and form
 document.getElementById('addbook').addEventListener('click', function(e){
     const id = this.id;
     const title = document.getElementById('title').value;
@@ -99,7 +95,6 @@ document.getElementById('addbook').addEventListener('click', function(e){
     displayBooks();
 })
 
-//deleting and toggle functionality
 document.getElementById('content').addEventListener('click', function(event){
         if(event.target.id=='delete_button_icon'){
             const delID = event.target.dataset.id;
@@ -120,14 +115,11 @@ document.getElementById('content').addEventListener('click', function(event){
         }
         
 })
-//clear all books
 document.getElementById('clear').addEventListener('click', function(){
         // alert("clear");       
         book_list.length = 0;
         displayBooks(); 
 });
-
-//helper function for read status
 function isread(read_status){
         if(read_status == true){
             return "read"
@@ -136,7 +128,7 @@ function isread(read_status){
             return "not read yet"
         }
 }
-    
+
 
 //populate with sample books
 createAndAddBookObj('The Hobbit', 'J.R.R. Tolkien', 310, isread(true));
