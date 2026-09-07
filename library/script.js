@@ -49,12 +49,12 @@ function displayBooks(){
         toggle_button_icon.className = "toggle_button_icon";
         toggle_button_icon.id = "toggle";
         toggle_button_icon.dataset.id = book.id;
-        toggle_button_icon.setAttribute('src',"./change.svg");
+        toggle_button_icon.setAttribute('src',"./svgs/change.svg");
         toggle.appendChild(toggle_button_icon)
         const delete_button = document.createElement('button');
         const delete_button_icon = document.createElement('img');
         delete_button.className = "delete_button_icon";
-        delete_button_icon.setAttribute('src', './delete.svg')
+        delete_button_icon.setAttribute('src', './svgs/delete.svg')
         delete_button_icon.id = "delete_button_icon";
         delete_button_icon.dataset.id = book.id;
         delete_button.appendChild(delete_button_icon);
