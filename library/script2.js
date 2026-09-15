@@ -1,22 +1,13 @@
-const book_list = [];
-class Book{
-    constructor(title, author, booklength, read_status) {
-        this.id = crypto.randomUUID();
-        this.title = title;
-        this.booklength = booklength;
-        this.author = author;
-        this.read_status = read_status;
-    }   
-    changeRead() {
-        this.read_status = this.read_status === "read" ? "not read yet" : "read";
+//classes for book items and book array
+class BookList{
+    constructor(){
+        this.book_list = [];
     }
-}
-
-function createAndAddBookObj(title, author, booklength, read_status){
+    createAndAddBookObj(title, author, booklength, read_status){
             const bookItem = new Book(title, author, booklength, read_status);
             book_list.push(bookItem);
-}
-function displayBooks(){
+    }
+    displayBooks(){
     document.getElementById('content').innerHTML = ""
     book_list.forEach(book => {
         
@@ -72,8 +63,25 @@ function displayBooks(){
         read_status.appendChild(toggle);
         document.getElementById('content').appendChild(card);
 
-    });
+        });
+    }
 }
+
+class Book{
+    constructor(title, author, booklength, read_status) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.booklength = booklength;
+        this.author = author;
+        this.read_status = read_status;
+    }   
+    changeRead() {
+        this.read_status = this.read_status === "read" ? "not read yet" : "read";
+    }
+}
+
+
+//event listeners
 document.getElementById('addbook').addEventListener('click', function(e){
     const id = this.id;
     const title = document.getElementById('title').value;
@@ -91,8 +99,8 @@ document.getElementById('addbook').addEventListener('click', function(e){
         return;
     }
 
-    createAndAddBookObj(title,author,pages,read_string);
-    displayBooks();
+    Fiction.createAndAddBookObj(title,author,pages,read_string);
+    Fiction.displayBooks();
 })
 
 document.getElementById('content').addEventListener('click', function(event){
@@ -101,7 +109,7 @@ document.getElementById('content').addEventListener('click', function(event){
             const filtered = book_list.filter(book => book.id !== delID);
             book_list.length = 0;
             book_list.push(...filtered);
-            displayBooks()
+            Fiction.displayBooks()
         }
         else if(event.target.id == 'toggle'){
             // console.log("toggle status of book " + event.target.dataset.id)
@@ -109,7 +117,7 @@ document.getElementById('content').addEventListener('click', function(event){
             const changed = book_list.find(book => book.id == ID);
             if(changed){
                 changed.changeRead();
-                displayBooks()
+                Fiction.displayBooks()
             }
             
         }
@@ -118,7 +126,7 @@ document.getElementById('content').addEventListener('click', function(event){
 document.getElementById('clear').addEventListener('click', function(){
         // alert("clear");       
         book_list.length = 0;
-        displayBooks(); 
+        Fiction.displayBooks(); 
 });
 function isread(read_status){
         if(read_status == true){
@@ -128,19 +136,19 @@ function isread(read_status){
             return "not read yet"
         }
 }
-
-
+//creating BookList object
+const Fiction = new BookList();
+const book_list = Fiction.book_list;
 //populate with sample books
-createAndAddBookObj('The Hobbit', 'J.R.R. Tolkien', 310, isread(true));
-createAndAddBookObj('1984', 'George Orwell', 328, isread(false));
-createAndAddBookObj('Pride and Prejudice', 'Jane Austen', 432, isread(true));
-createAndAddBookObj('The Catcher in the Rye', 'J.D. Salinger', 277, isread(false));
-createAndAddBookObj('Dune', 'Frank Herbert', 896, isread(true));
-createAndAddBookObj('To Kill a Mockingbird', 'Harper Lee', 281, isread(true));
-createAndAddBookObj('Moby-Dick', 'Herman Melville', 720, isread(false));
-createAndAddBookObj('The Great Gatsby', 'F. Scott Fitzgerald', 180, isread(true));
-createAndAddBookObj('War and Peace', 'Leo Tolstoy', 1225, isread(false));
-createAndAddBookObj('The Alchemist', 'Paulo Coelho', 208, isread(true));
-displayBooks();
-
-//
+Fiction.createAndAddBookObj('The Hobbit', 'J.R.R. Tolkien', 310, isread(true));
+Fiction.createAndAddBookObj('1984', 'George Orwell', 328, isread(false));
+Fiction.createAndAddBookObj('Pride and Prejudice', 'Jane Austen', 432, isread(true));
+Fiction.createAndAddBookObj('The Catcher in the Rye', 'J.D. Salinger', 277, isread(false));
+Fiction.createAndAddBookObj('Dune', 'Frank Herbert', 896, isread(true));
+Fiction.createAndAddBookObj('To Kill a Mockingbird', 'Harper Lee', 281, isread(true));
+Fiction.createAndAddBookObj('Moby-Dick', 'Herman Melville', 720, isread(false));
+Fiction.createAndAddBookObj('The Great Gatsby', 'F. Scott Fitzgerald', 180, isread(true));
+Fiction.createAndAddBookObj('War and Peace', 'Leo Tolstoy', 1225, isread(false));
+Fiction.createAndAddBookObj('The Alchemist', 'Paulo Coelho', 208, isread(true));
+//display books
+Fiction.displayBooks();
